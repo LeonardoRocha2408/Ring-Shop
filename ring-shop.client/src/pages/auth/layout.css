@@ -1,0 +1,86 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.auth-form h2 {
+    font-family: "Cormorant Garamond", serif;
+    color: #6B552E;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+.organizes-input {
+    display: flex;
+    align-content: center;
+    border-radius: 10px;
+    border: 1px solid #d8c59b;
+    overflow: hidden;
+    width: 80%;
+    padding-right: 10px;
+    margin: 10px;
+    gap: 5px;
+    background: #f5efe3;
+}
+.orga-input:focus {
+    outline: none;
+    border-color: #b28b3c;
+    box-shadow: 0 0 0 3px rgba(178, 139, 60, 0.12);
+}
+.label-wrapper {
+    padding: 10px;
+    height: 100%;
+    margin-right: 5px;
+    background: #A8823D;
+}
+.organizes-input input {
+    font-size: 15px;
+    width: 80%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.show-password {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+}
+
+.send-data {
+    width: 80%;
+    margin: 15px auto 0;
+    padding: 12px;
+    background: #C9A961;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.send-data:hover {
+    transform: scale(1.05);
+    background: #a8823d;
+}
+
+.auth-form p {
+    margin-top: 10px; 
+}
+
+.link {
+    color: #9A762F;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #6B552E;
+    text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/home/Home";
-import { Login } from "./pages/auth/login/login"
+import { Login } from "./pages/auth/login/login";
+import { Register } from "./pages/auth/register/register";
 import { useLocation } from "react-router-dom";
 import Header from "./components/header/header"
 import Footer from "./components/footer/footer";
@@ -16,7 +17,8 @@ export default function App() {
             {!hideHeader && <Header />}
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login /> } />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register /> } />
             </Routes>
             <Footer />
         </>

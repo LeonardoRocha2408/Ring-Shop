@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ring-shop.client/ring-shop.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Ring-Shop.Server/Ring-Shop.Server.csproj" />
+</Solution>

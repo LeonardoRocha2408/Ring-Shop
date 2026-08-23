@@ -1,0 +1,116 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Formas de pagamento */
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.payment-methods h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.payment-icons img {
+    height: 28px;
+    width: auto;
+}
+
+/* Colunas principais */
+.footer-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    width: 100%;
+}
+
+.about-us {
+    flex: 1 1 250px;
+    max-width: 100%;
+    text-align: left;
+    font-family: sans-serif;
+}
+
+.about-us h2,
+.contact h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.about-us p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.policies {
+    flex: 1 1 200px;
+}
+
+.contact {
+    flex: 1 1 220px;
+}
+
+.policies ul,
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.policies li,
+.contact li {
+    font-size: 0.9rem;
+    color: #333333;
+}
+
+.contact li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+@media (max-width: 575.98px) {
+    footer {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .payment-methods {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .footer-columns {

@@ -1,7 +1,9 @@
 <Solution>
+  <Project Path="Enums/Enums.csproj" Id="b8fbecaa-5c7f-4f65-b05a-fc429990cabc" />
   <Project Path="ring-shop.client/ring-shop.client.esproj">
     <Build />
     <Deploy />
   </Project>
   <Project Path="Ring-Shop.Server/Ring-Shop.Server.csproj" />
+  <Project Path="Shared/Shared.csproj" Id="aec719c1-e3fa-4bbf-b0d3-c7b4dfdd8bc6" />
 </Solution>

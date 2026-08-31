@@ -6,7 +6,7 @@ import "./useScrollReveal.css";
  * @param {number} options.threshold
  * @param {boolean} options.once
  */
-export default function useScrollReveal({ threshold = 0.15, once = true } = {}) {
+export default function useScrollReveal({ threshold = 0.15, once = false } = {}) {
     const ref = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 

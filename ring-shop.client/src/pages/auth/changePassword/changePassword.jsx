@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { User, Mail, Lock, Eye, EyeOff, XCircle, CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Mail, Lock, Eye, EyeOff, XCircle, CheckCircle } from "lucide-react";
 import validationPassword from "../../../hooks/validationPassword/validationPassword"
 import AuthLayout from "../auth-layout";
 import "../layout.css";
 
-
 async function sendData(name, email, password, API_URL) {
     try {
-        const response = await fetch(`${API_URL}/create-account`, {
+        const response = await fetch(`${API_URL}/change-password`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -25,7 +24,7 @@ async function sendData(name, email, password, API_URL) {
         }
 
         return {
-            sucess: true, message: "Conta criada com sucesso!"
+            sucess: true, message: "Senha alterada com sucesso!"
         }
 
     }
@@ -33,9 +32,8 @@ async function sendData(name, email, password, API_URL) {
         alert(error);
     }
 }
-   
-export function Register() {
-    const [name, setName] = useState("");
+
+export function ChangePassword() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("")
@@ -61,19 +59,7 @@ export function Register() {
     return (
         <AuthLayout>
             <form className="auth-form" onSubmit={handleSubmit}>
-                <h2>Crie sua conta</h2>
-
-                <div className="organizes-input">
-                    <div className="label-wrapper">
-                        <label htmlFor="name"> <User size={18} /> </label>
-                    </div>
-                    <input
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        type="name"
-                        placeholder="Digite seu nome" />
-                </div>
+                <h2>Altere sua senha</h2>
 
                 <div className="organizes-input">
                     <div className="label-wrapper">
@@ -137,10 +123,9 @@ export function Register() {
 
                     <p>{validation.hasSpecialCharacter ? <CheckCircle size={15} color="green" /> : <XCircle size={15} color="red" />} Pelo menos um caracter especial</p>
                 </div>
-                <span>{error}</span>
-                <button className="send-data" type="submit"> Iniciar sessão </button>
 
-                <p>Já tem uma conta? <Link className="link" to="/login">Entre</Link></p>
+                <span>{error}</span>
+                <button className="send-data" type="submit"> Alterar senha </button>
             </form>
         </AuthLayout>
     );

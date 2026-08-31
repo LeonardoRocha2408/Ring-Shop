@@ -21,7 +21,7 @@ namespace Ring_Shop.Server.Entities
         [Column("PasswordHash")]
         public string PasswordHash { get; set; } = string.Empty;
 
-        [Column("ProilePicture")]
+        [Column("ProfilePicture")]
         public string ProfilePicture { get; set; } = string.Empty;
 
         [Column("CreatedAt")]

@@ -5,7 +5,7 @@
     margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
-    background-color: #000;
+    background-color: white;
 }
 
 .carousel-image {
@@ -22,6 +22,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
 }
 
 .carousel-btn {
@@ -92,6 +93,15 @@
     .banner-img {
         width: 600px;
         height: 600px; 
+    }
+
+    .with-hero-copy::before {
+        width: 58%;
+    }
+
+    .hero-copy {
+        left: 8%;
+        width: 48%;
     }
 }
 @media (max-width: 991.98px) {

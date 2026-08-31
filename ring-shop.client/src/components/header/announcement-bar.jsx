@@ -4,10 +4,12 @@ import "./announcement-bar.css";
 
 export function AnnouncementBar({ className }) {
     const messages = [
-        "WELCOME OUR STORE",
+        "BEM-VINDO A NOSSA LOJA",
         "O SIMBOLO DE UM AMOR ETERNO",
-        "NSDNSIDNAONDA",
-        "NDNSADAODNADOFSWFSFFFS",
+        "FRETE GRÁTIS EM COMPRAS ACIMA DE R$200",
+        "DESCONTO NO PIX DE 5%",
+        "BEM-VINDO A NOSSA LOJA",
+        "O SIMBOLO DE UM AMOR ETERNO",
         "FRETE GRÁTIS EM COMPRAS ACIMA DE R$200",
         "DESCONTO NO PIX DE 5%"
     ];

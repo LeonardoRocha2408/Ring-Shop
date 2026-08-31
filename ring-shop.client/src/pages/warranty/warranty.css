@@ -1,0 +1,12 @@
+.warranty {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+}
+.warranty-text {
+    align-self: center;
+    width: 90%; 
+    max-width: 500px; 
+    margin: 10px auto;
+}

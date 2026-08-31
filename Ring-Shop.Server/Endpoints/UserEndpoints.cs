@@ -41,9 +41,11 @@ namespace Ring_Shop.Server.Endpoints
             })
                 .RequireRateLimiting("CreateAccountLimiter");
 
+
+            // Login Account Endpoint
             app.MapPost("/login", async (LoginDTO request, UserServices userServices, AuthServices authServices, HttpContext httpContext) =>
             {
-                if (!string.IsNullOrEmpty(request.Email) || !string.IsNullOrEmpty(request.Password))
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
                 {
                     return Results.BadRequest("Invalid input data.");
                 }
@@ -72,6 +74,26 @@ namespace Ring_Shop.Server.Endpoints
                 }
             })
                 .RequireRateLimiting("LoginLimiter");
+
+            // Change Password Endpoint
+            app.MapPatch("change-password", async (ChangePasswordDTO request, UserServices userServices) =>
+            {
+                if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.NewPassword))
+                {
+                    return Results.BadRequest("Invalid input data.");
+                }
+
+                var result = await userServices.ChangePassword(request);
+
+                return result switch
+                {
+                    ChangePasswordResult.Success => Results.Ok(),
+                    ChangePasswordResult.UserNotFound => Results.NotFound("User not found."),
+                    ChangePasswordResult.InvalidPassword => Results.Unauthorized(),
+                    _ => Results.StatusCode(500),
+                };
+            })
+                .RequireRateLimiting("ChangePasswordLimiter");
         }
     }
 }

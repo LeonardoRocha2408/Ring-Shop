@@ -15,7 +15,7 @@ export default function Sidebar({ isOpen, onClose }) {
               <nav className="nav-links">
 
                   {navLinks.map((item) => (
-                      <NavLink to={item.to} key={item.to} onClick>
+                      <NavLink to={item.to} key={item.id} onClick>
                           {item.label}
                       </NavLink>
                   ))}

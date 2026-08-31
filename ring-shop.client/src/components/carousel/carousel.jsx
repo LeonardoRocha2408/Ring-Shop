@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import "./carousel.css";
 
-export default function Carousel({images}) {
+export default function Carousel({ images, children }) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(null);
     const [isMoving, setIsMoving] = useState(false);
@@ -59,8 +59,8 @@ export default function Carousel({images}) {
     };
 
     return (
-        <div className="carousel-container">
-            <button onClick={handlePrevious} className="carousel-btn" id="prev"> <ChevronLeft size={24} /> </button>
+        <div className={"carousel-container"}>
+            {images.length > 1 && <button onClick={handlePrevious} className="carousel-btn" id="prev"> <ChevronLeft size={24} /> </button>}
             <AnimatePresence initial={false} custon={direction} className="carousel-wrapper">
                 <motion.picture
                     key={currentIndex}
@@ -87,9 +87,9 @@ export default function Carousel({images}) {
                     <img src={images[currentIndex].desktop} alt={`Slide ${currentIndex + 1}`} />
                 </motion.picture>
             </AnimatePresence>
-            <button onClick={handleNext} className="carousel-btn next" id="next"> <ChevronRight size={24} /> </button>
+            {images.length > 1 && <button onClick={handleNext} className="carousel-btn next" id="next"> <ChevronRight size={24} /> </button>}
 
-            <div className="carousel-dots">
+            {images.length > 1 && <div className="carousel-dots">
                 {images.map((_, index) => (
                     <button
                         key={index}
@@ -101,7 +101,7 @@ export default function Carousel({images}) {
                         aria-label={`Ir para o slide ${index + 1}`}
                     />
                 ))}
-            </div>
+            </div>}
         </div>
 
     );

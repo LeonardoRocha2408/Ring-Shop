@@ -24,6 +24,7 @@
     width: 100%;
 }
 .title-close span {
+    font-family: "Playfair Display", serif;
     font-size: 25px;
 }
 .title-close button {
@@ -53,6 +54,7 @@
     gap: 15px;
 }
 .nav-links a {
+    font-family: "Montserrat", sans-serif;
     text-decoration: none;
     color: black;
     font-size: 20px;

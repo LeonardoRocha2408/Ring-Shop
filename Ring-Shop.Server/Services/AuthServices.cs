@@ -25,6 +25,13 @@ namespace Ring_Shop.Server.Services
             _configuration = configuration;
         }
 
+
+        /* Check if the password format meets the requirements, where the password must have: 
+         * 8 characters, 
+         * at least one uppercase letter, 
+         * at least one lowercase letter,
+         * at least one number
+        */
         public AuthPassword VerifyPasswordFormat(string password)
         {
             if (password == null)
@@ -50,16 +57,23 @@ namespace Ring_Shop.Server.Services
             return AuthPassword.PasswordIsOk;
         }
 
+        // Hash the password using PasswordHasher and return the hashed password.
         public Task<string> HashPassword(UserEntity user, string password)
         {
             return Task.FromResult(_passwordHasher.HashPassword(user, password));
         }
 
+        // Check if the provided password meets the real password and return the result of the verification.
         public Task<PasswordVerificationResult> VerifyPassword(UserEntity user, string password, string providedPassword)
         {
             return Task.FromResult(_passwordHasher.VerifyHashedPassword(user, password, providedPassword));
         }
 
+
+        /* Generate a JWT token for the user. Requires the user ID to generate the token.
+         * Return the generate token as string to be saved in the cookie for future authentications.
+         * The method create the claims with the user ID, get the JWT key, generate a symmetric security key, models the token, generates the JWT and return in string. 
+         */
         public Task<string> GenerateToken(Guid Id)
         {
             var claims = new List<Claim>

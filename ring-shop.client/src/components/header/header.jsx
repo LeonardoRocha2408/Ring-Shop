@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnnouncementBar } from "./announcement-bar";
+import { ChevronDown } from "lucide-react";
 import Sidebar from "../sidebar/sidebar"
 import navLinks from "./nav-links";
 import "./header.css";
@@ -10,8 +11,9 @@ function NavigationBar() {
     return (
         <nav className="navi-bar">
             {navLinks.map((item) => (
-                <Link className="link" to={item.to} key={item.to}>
+                <Link className="link nav" to={item.to} key={item.id}>
                     {item.label}
+                    {item.hasDropdown && <ChevronDown size={15} className="nav-icon" /> }
                 </Link>
             ))}
         </nav>

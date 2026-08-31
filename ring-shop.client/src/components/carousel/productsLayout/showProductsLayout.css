@@ -1,0 +1,25 @@
+.product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.product-description {
+    min-height: 40px;
+    text-align: center;
+    margin: 0;
+}
+
+.product-info span {
+    margin: 10px 0;
+}
+
+.product-info button {
+    width: 100%;
+    background: #A8823D;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 11px;
+}

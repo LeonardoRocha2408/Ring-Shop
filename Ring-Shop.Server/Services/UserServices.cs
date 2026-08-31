@@ -78,5 +78,32 @@ namespace Ring_Shop.Server.Services
             var token = await _authServices.GenerateToken(user.Id);
             return (LoginResult.Success, token);
         }
+
+        public async Task<ChangePasswordResult> ChangePassword(ChangePasswordDTO dto)
+        {
+            UserEntity? user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == dto.Email);
+
+            if (user == null)
+            {
+                return ChangePasswordResult.UserNotFound;
+            }
+
+            var result = await _authServices.VerifyPassword(user, user.PasswordHash, dto.Password);
+            if (result != PasswordVerificationResult.Success)
+            {
+                return ChangePasswordResult.InvalidPassword;
+            }
+
+            var verifyPasswordFormat = _authServices.VerifyPasswordFormat(dto.NewPassword);
+            if (verifyPasswordFormat != AuthPassword.PasswordIsOk) 
+            {
+                return ChangePasswordResult.InvalidPassword;
+            }            
+
+            user.PasswordHash = await _authServices.HashPassword(user, dto.NewPassword);
+            _context.SaveChanges();
+            return ChangePasswordResult.Success;    
+        }
     }
 }

@@ -84,3 +84,9 @@
     color: #6B552E;
     text-decoration: underline;
 }
+
+.validation_password {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}

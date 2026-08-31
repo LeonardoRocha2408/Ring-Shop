@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Ring_Shop.Server.Endpoints;
 using Ring_Shop.Server.Entities;
 using Ring_Shop.Server.Services;
+using System.Text;
 using System.Threading.RateLimiting;
 
 namespace Ring_Shop.Server
@@ -35,21 +37,19 @@ namespace Ring_Shop.Server
                         ValidateAudience = true,
                         ValidAudience = builder.Configuration["Jwt:Audience"],
 
-                        ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
                     };
 
                     options.Events = new JwtBearerEvents
                     {
                         OnMessageReceived = context =>
                         {
-                            context.Token = context.Request.Cookies["access_token"];
+                            context.Token = context.HttpContext.Request.Cookies["access_token"];
                             return Task.CompletedTask;
                         }
                     };
-                }
-            );
+                });
 
 
             // Add rate limiter to API security
@@ -78,13 +78,23 @@ namespace Ring_Shop.Server
                         QueueLimit = 0
                     }
                     ));
+
+                options.AddPolicy("ChangePasswordLimiter", httpContext => 
+                RateLimitPartition.GetFixedWindowLimiter(
+                    partitionKey: httpContext.Connection.RemoteIpAddress?.ToString(),
+                    factory: _ => new FixedWindowRateLimiterOptions
+                    {
+                        PermitLimit = 1,
+                        Window = TimeSpan.FromMinutes(60),
+                        QueueLimit = 0
+                    }
+                    ));
             });
 
             // Add MySQL database to backend and configure the connection string
-            string? connectiomString = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<DbContextEntity>(options => options.UseMySql(
-                connectiomString,
-                ServerVersion.AutoDetect(connectiomString)));
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            builder.Services.AddDbContext<DbContextEntity>(options => options.UseMySql
+            (connectionString, ServerVersion.AutoDetect(connectionString)));
 
             builder.Services.AddScoped<AuthServices>();
             builder.Services.AddScoped<UserServices>();
@@ -117,6 +127,8 @@ namespace Ring_Shop.Server
             app.UseAuthorization();
 
             app.MapFallbackToFile("/index.html");
+
+            app.MapEndpoints();
 
             app.Run();
         }

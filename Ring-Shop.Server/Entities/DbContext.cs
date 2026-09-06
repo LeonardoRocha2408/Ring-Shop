@@ -20,5 +20,6 @@ namespace Ring_Shop.Server.Entities
         public DbContextEntity(DbContextOptions options) : base(options) { }
 
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
     }
 }

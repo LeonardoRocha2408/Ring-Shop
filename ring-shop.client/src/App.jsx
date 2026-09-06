@@ -8,6 +8,7 @@ import Header from "./components/header/header"
 import Footer from "./components/footer/footer";
 import Warranty from "./pages/warranty/warranty";
 import "./App.css";
+import AuthProvider from "./hooks/authUser/authContext";
 
 const routesWithoutHeader = ["/login", "/register", "/change-password"];
 export default function App() {
@@ -17,13 +18,15 @@ export default function App() {
     return (
         <>
             {!hideHeader && <Header />}
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/change-password" element={<ChangePassword />} />
-                <Route path="/warranty" element={<Warranty />} />
-            </Routes>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/change-password" element={<ChangePassword />} />
+                    <Route path="/warranty" element={<Warranty />} />
+                </Routes>
+            </AuthProvider>
             <Footer />
         </>
     );

@@ -6,6 +6,8 @@ using Ring_Shop.Server.Entities;
 using Ring_Shop.Server.Services;
 using System.Text;
 using System.Threading.RateLimiting;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace Ring_Shop.Server
 {
@@ -39,6 +41,8 @@ namespace Ring_Shop.Server
 
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+
+                        ValidateLifetime = false
                     };
 
                     options.Events = new JwtBearerEvents
@@ -96,8 +100,23 @@ namespace Ring_Shop.Server
             builder.Services.AddDbContext<DbContextEntity>(options => options.UseMySql
             (connectionString, ServerVersion.AutoDetect(connectionString)));
 
+            // Add Cloudinary service to program and configure its dependencies: CloudName, ApiKey, ApiSecret - return an url HTPPS for to upload images
+            builder.Services.AddSingleton(sp =>
+            {
+                var config = builder.Configuration;
+                var account = new Account(
+                    config["Cloudinary:CloudName"],
+                    config["Cloudinary:ApiKey"],
+                    config["Cloudinary:ApiSecret"]
+                    );
+                return new Cloudinary(account) { Api = { Secure = true } };
+            });
+
+
+            // Add scoped services to the container for dependency injection
             builder.Services.AddScoped<AuthServices>();
             builder.Services.AddScoped<UserServices>();
+            builder.Services.AddScoped<AdminServices>();
 
             // Add services to the container.
             builder.Services.AddAuthorization();

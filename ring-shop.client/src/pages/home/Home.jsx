@@ -1,11 +1,13 @@
-import useScrollReveal from "../../hooks/useScrollReveal/useScrollReveal"
+/* eslint-disable react-hooks/refs */
+import useScrollReveal from "../../hooks/useScrollReveal/useScrollReveal";
+import useAuth from "../../hooks/authUser/useAuth";
 import Carousel from "../../components/carousel/carousel";
 import ProductsCarousel from "../../components/carousel/productsCarousel";
 
 import imageAnnouncementMobile from "../../../public/images/image-announcement-mobile.jpeg"
-import imageAnnouncement from "../../../public/images/image-announcement.jpeg"
-import logo from "../../../public/images/logo.jpeg"
-import lupa from "../../../public/images/lupa.png"
+import imageAnnouncement from "../../../public/images/image-announcement.jpeg";
+import logo from "../../../public/images/logo.jpeg";
+import lupa from "../../../public/images/lupa.png";
 
 import ring1 from "../../.././public/rings/ring_1.png";
 import ring2 from "../../.././public/rings/ring_2.png";
@@ -17,12 +19,23 @@ import banner from "../../.././public/rings/banner.jpg";
 import bracelet from "../../.././public/rings/bracelet.jpg";
 
 import "./Home.css";
+import { useEffect } from "react";
 
 export function Home() {
+    const { user } = useAuth();
     const carouselReveal = useScrollReveal();
     const itemsReveal = useScrollReveal();
     const productsReveal = useScrollReveal();
     const bannerReveal = useScrollReveal();
+
+    useEffect(() => {
+        async function loadScreen() {
+            if (user === null) {
+                return;
+            }
+        }
+        loadScreen();
+    }, [user]);
 
     const images = [
         { mobile: imageAnnouncementMobile, desktop: imageAnnouncement },
@@ -45,6 +58,7 @@ export function Home() {
 
     return (
         <div className="home">
+            
             <div ref={carouselReveal.ref} className={`reveal ${carouselReveal.isVisible ? "visible" : ""}`}>
                 <Carousel images={images}>
                     <div className="hero-copy">

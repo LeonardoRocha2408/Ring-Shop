@@ -10,6 +10,7 @@ async function sendData(name, email, password, API_URL) {
     try {
         const response = await fetch(`${API_URL}/create-account`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             },

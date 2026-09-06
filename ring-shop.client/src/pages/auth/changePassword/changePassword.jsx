@@ -49,7 +49,7 @@ export function ChangePassword() {
         const result = await sendData(name, email, password, API_URL)
 
         if (result.sucess) {
-            navigate("/");
+            navigate("/login");
         }
         else {
             setError(result.message);

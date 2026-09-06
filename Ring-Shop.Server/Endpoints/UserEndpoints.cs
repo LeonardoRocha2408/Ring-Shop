@@ -1,6 +1,7 @@
 ﻿using Enums.UserEnums;
 using Ring_Shop.Server.Services;
 using Shared.UserDTOs;
+using System.Security.Claims;
 
 namespace Ring_Shop.Server.Endpoints
 {
@@ -24,7 +25,7 @@ namespace Ring_Shop.Server.Endpoints
                         {
                             HttpOnly = true,
                             Secure = true,
-                            SameSite = SameSiteMode.Strict,
+                            SameSite = SameSiteMode.None,
                         };
                         httpContext.Response.Cookies.Append("access_token", result.Token!, cookies);
                         return Results.Ok();
@@ -58,7 +59,7 @@ namespace Ring_Shop.Server.Endpoints
                         {
                             HttpOnly = true,
                             Secure = true,
-                            SameSite = SameSiteMode.Strict,
+                            SameSite = SameSiteMode.None,
                         };
                         httpContext.Response.Cookies.Append("access_token", result.Token!, cookies);
                         return Results.Ok();
@@ -94,6 +95,20 @@ namespace Ring_Shop.Server.Endpoints
                 };
             })
                 .RequireRateLimiting("ChangePasswordLimiter");
+
+            // /me endpoint. Return user data
+            app.MapGet("/me", async (UserServices userServices, HttpContext context) =>
+            {
+                string? userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (!Guid.TryParse(userId, out var Id))
+                {
+                    return Results.BadRequest();
+                }
+
+                return Results.Ok(await userServices.GetMe(Id));
+            })
+                .RequireAuthorization();
         }
     }
 }

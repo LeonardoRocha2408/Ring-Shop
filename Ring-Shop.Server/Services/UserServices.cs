@@ -10,6 +10,9 @@ namespace Ring_Shop.Server.Services
     public interface IUserServices
     {
         public Task<(CreateAccountResult Result, string? Token)> CreateAccount(CreateAccountDTO dto);
+        public Task<(LoginResult Result, string? Token)> Login(LoginDTO dto);
+        public Task<ChangePasswordResult> ChangePassword(ChangePasswordDTO dto);
+        public Task<MeDTO?> GetMe(Guid Id);
     }
 
     public class UserServices : IUserServices
@@ -54,7 +57,7 @@ namespace Ring_Shop.Server.Services
             await _context.AddAsync(newUSer);
             await _context.SaveChangesAsync();
 
-            string token = await _authServices.GenerateToken(newUSer.Id);
+            string token = await _authServices.GenerateToken(newUSer.Id, newUSer.Role);
             return (CreateAccountResult.Success, token);
         }
 
@@ -75,10 +78,11 @@ namespace Ring_Shop.Server.Services
                 return (LoginResult.InvalidPassword, null);
             }
 
-            var token = await _authServices.GenerateToken(user.Id);
+            var token = await _authServices.GenerateToken(user.Id, user.Role);
             return (LoginResult.Success, token);
         }
 
+        // Change password method to change the user password. Validate the input data and check if data is correct
         public async Task<ChangePasswordResult> ChangePassword(ChangePasswordDTO dto)
         {
             UserEntity? user = await _context.Users
@@ -104,6 +108,23 @@ namespace Ring_Shop.Server.Services
             user.PasswordHash = await _authServices.HashPassword(user, dto.NewPassword);
             _context.SaveChanges();
             return ChangePasswordResult.Success;    
+        }
+
+        // Return the user data as Email,Name and Profile Picture URL
+        public async Task<MeDTO?> GetMe(Guid Id)
+        {
+            MeDTO? user = await _context.Users
+                    .AsNoTracking()
+                    .Where(u => u.Id == Id)
+                    .Select(u => new MeDTO
+                    {
+                        Email = u.Email,
+                        Name = u.Name,
+                        Role = u.Role,
+                        PathProfile = u.ProfilePicture
+                    })
+                    .FirstOrDefaultAsync();
+            return user;
         }
     }
 }

@@ -6,9 +6,10 @@ export default function ShowProductsLayout({ product }) {
     return (
         <div className="product-info">
             <img src={product.desktop} />
-            <p className="product-description">{product.description}</p>
-            <span>R$ {product.price},00</span>
-            <span>Até 2 vezes de R$ {installmentPrice},00 sem juros</span>
+            <img src={product.pictureURL} alt={product.description} className="product-image" />
+            <p className="product-description">{product.name}</p>
+            <span>R$ {product.price.toFixed(2).replace(".", ",")}</span>
+            <span>Até 2 vezes de R$ {installmentPrice.toFixed(2).replace(".", ",")} sem juros</span>
             <button>COMPRAR</button>
         </div>
     );

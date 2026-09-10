@@ -21,5 +21,6 @@ namespace Ring_Shop.Server.Entities
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<ProductEntity> Products { get; set; }
+        public DbSet<ProductTypeEntity> ProductTypes { get; set; }
     }
 }

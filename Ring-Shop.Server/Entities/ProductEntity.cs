@@ -22,5 +22,7 @@ namespace Ring_Shop.Server.Entities
 
         [Column("ImageId")]
         public string ImageId { get; set; } = string.Empty;
+
+        public ProductTypeEntity Type { get; set; } 
     }
 }

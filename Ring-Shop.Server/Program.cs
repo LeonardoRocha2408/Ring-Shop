@@ -7,7 +7,7 @@ using Ring_Shop.Server.Services;
 using System.Text;
 using System.Threading.RateLimiting;
 using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
+using System.Text.Json.Serialization;
 
 namespace Ring_Shop.Server
 {
@@ -26,6 +26,10 @@ namespace Ring_Shop.Server
                 .AllowAnyHeader()
                 .AllowCredentials();
             }));
+
+            // Add authorization for admins 
+            builder.Services.AddAuthorization(options =>
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin")));
 
             // Add authentication with JWT and configure the token validation parameters
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -112,11 +116,15 @@ namespace Ring_Shop.Server
                 return new Cloudinary(account) { Api = { Secure = true } };
             });
 
+            // Add conversion of the enum to string
+            builder.Services.ConfigureHttpJsonOptions(options => 
+                options.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             // Add scoped services to the container for dependency injection
             builder.Services.AddScoped<AuthServices>();
             builder.Services.AddScoped<UserServices>();
             builder.Services.AddScoped<AdminServices>();
+            builder.Services.AddScoped<ProductServices>();
 
             // Add services to the container.
             builder.Services.AddAuthorization();

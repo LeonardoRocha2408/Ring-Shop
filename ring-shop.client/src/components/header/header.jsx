@@ -12,7 +12,7 @@ function NavigationBar() {
     return (
         <nav className="navi-bar">
             {navLinks.map((item) => (
-                <Link className="link nav" to={`${item.to}?type=${item.type}`} key={item.id}>
+                <Link className="link nav" to={item.type ? `${item.to}?type=${item.type}` : item.to} key={item.id}>
                     {item.label}
                     {item.hasDropdown && <ChevronDown size={15} className="nav-icon" /> }
                 </Link>

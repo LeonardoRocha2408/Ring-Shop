@@ -14,7 +14,7 @@ namespace Shared.UserDTOs
 
 
         [Required]
-        public Role Role { get; set; }
+        public string Role { get; set; } = string.Empty;
         public string PathProfile { get; set; } = string.Empty;
     }
 }

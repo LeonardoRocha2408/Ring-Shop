@@ -1,0 +1,139 @@
+.product-detail {
+    display: flex;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.product-detail-image {
+    flex: 1;
+    max-width: 440px;
+}
+
+.product-detail-image img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-detail-name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: #3a3a3a;
+    letter-spacing: 0.01em;
+    margin: 0 0 16px;
+}
+
+.product-detail-price {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e8e1d0;
+}
+
+.price-main {
+    font-family: "Montserrat", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #3a3a3a;
+}
+
+.price-installment {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    color: #8a8168;
+}
+
+.price-pix {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    color: #b8912f;
+    font-weight: 500;
+}
+
+.product-detail-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.detail-field-row {
+    display: flex;
+    gap: 14px;
+}
+
+.detail-field-row .detail-field {
+    flex: 1;
+}
+
+.detail-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-field label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: #4a4a4a;
+}
+
+.detail-field input,
+.detail-field textarea {
+    padding: 12px 14px;
+    border: 1px solid #d8d0bd;
+    border-radius: 6px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+}
+
+.detail-field input:focus,
+.detail-field textarea:focus {
+    border-color: #c9a860;
+}
+
+.product-detail-buy {
+    padding: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #A8823D;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.product-detail-buy:hover {
+    background-color: #8f6d30;
+}
+
+@media (max-width: 700px) {
+    .product-detail {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .product-detail-image {
+        max-width: 100%;
+    }
+}

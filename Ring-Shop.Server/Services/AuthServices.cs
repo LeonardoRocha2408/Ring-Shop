@@ -14,7 +14,7 @@ namespace Ring_Shop.Server.Services
         public AuthPassword VerifyPasswordFormat(string password);
         public Task<string> HashPassword(UserEntity user, string password);
         public Task<PasswordVerificationResult> VerifyPassword(UserEntity user, string password, string providedPassword);
-        public Task<string> GenerateToken(Guid Id, Role role);
+        public Task<string> GenerateToken(UserEntity user);
     }
     public class AuthServices : IAuthServices
     {
@@ -75,12 +75,12 @@ namespace Ring_Shop.Server.Services
          * Return the generate token as string to be saved in the cookie for future authentications.
          * The method create the claims with the user ID, get the JWT key, generate a symmetric security key, models the token, generates the JWT and return in string. 
          */
-        public Task<string> GenerateToken(Guid Id, Role role)
+        public Task<string> GenerateToken(UserEntity user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, Id.ToString()),
-                new Claim(ClaimTypes.Role, role.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
             string? keyValue = _configuration["Jwt:Key"];

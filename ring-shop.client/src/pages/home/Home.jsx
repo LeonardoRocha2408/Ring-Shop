@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/refs */
+import { Link } from "react-router-dom";
+
 import useScrollReveal from "../../hooks/useScrollReveal/useScrollReveal";
 import useAuth from "../../hooks/authUser/useAuth";
 import Carousel from "../../components/carousel/carousel";
@@ -22,7 +24,7 @@ import "./Home.css";
 import { useEffect } from "react";
 
 export function Home() {
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const carouselReveal = useScrollReveal();
     const itemsReveal = useScrollReveal();
     const productsReveal = useScrollReveal();
@@ -58,7 +60,10 @@ export function Home() {
 
     return (
         <div className="home">
-            
+            {!loading && user?.role === "Admin" && (
+                <Link className="admin-panel-link" to="/admin">PAINEL ADMIN</Link>
+            )}
+
             <div ref={carouselReveal.ref} className={`reveal ${carouselReveal.isVisible ? "visible" : ""}`}>
                 <Carousel images={images}>
                     <div className="hero-copy">
@@ -67,7 +72,7 @@ export function Home() {
                     </div>
                 </Carousel>
             </div>
-
+            
             <div ref={itemsReveal.ref} className={`items reveal ${itemsReveal.isVisible ? "visible" : ""}`}>
                 {imageItems.map(image => (
                     <div className="item" key={image.id}>

@@ -1,0 +1,58 @@
+.admin-panel {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.admin-panel h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #3a3a3a;
+    margin-bottom: 8px;
+}
+
+.admin-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: #8a8168;
+    margin-bottom: 40px;
+}
+
+.admin-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.admin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 180px;
+    height: 140px;
+    border: 1px solid #d8d0bd;
+    border-radius: 8px;
+    background-color: #faf7f2;
+    text-decoration: none;
+    color: #4a4a4a;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: border-color 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.admin-card:hover {
+    border-color: #c9a860;
+    background-color: #f5efe3;
+    transform: translateY(-3px);
+}
+
+.admin-card-icon {
+    color: #c9a860;
+}

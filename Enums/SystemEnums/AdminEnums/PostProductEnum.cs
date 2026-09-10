@@ -5,7 +5,6 @@
         ProductPostedSuccessfully,
         InvalidInput,
         ProductAlreadyExists,
-        ProductNameAlreadyExists,
         ProductHasMustPicture,
         ProductPictureIsBiggerThan10MB
     }

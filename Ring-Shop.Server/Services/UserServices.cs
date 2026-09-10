@@ -57,7 +57,7 @@ namespace Ring_Shop.Server.Services
             await _context.AddAsync(newUSer);
             await _context.SaveChangesAsync();
 
-            string token = await _authServices.GenerateToken(newUSer.Id, newUSer.Role);
+            string token = await _authServices.GenerateToken(newUSer);
             return (CreateAccountResult.Success, token);
         }
 
@@ -78,7 +78,7 @@ namespace Ring_Shop.Server.Services
                 return (LoginResult.InvalidPassword, null);
             }
 
-            var token = await _authServices.GenerateToken(user.Id, user.Role);
+            var token = await _authServices.GenerateToken(user);
             return (LoginResult.Success, token);
         }
 
@@ -120,7 +120,7 @@ namespace Ring_Shop.Server.Services
                     {
                         Email = u.Email,
                         Name = u.Name,
-                        Role = u.Role,
+                        Role = u.Role.ToString(),
                         PathProfile = u.ProfilePicture
                     })
                     .FirstOrDefaultAsync();

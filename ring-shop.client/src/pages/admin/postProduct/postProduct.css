@@ -1,0 +1,171 @@
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 420px;
+    margin: 10px auto;
+}
+
+.image-drop {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 240px;
+    border: 1.5px dashed #c9a860;
+    border-radius: 8px;
+    background-color: #faf7f2;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.image-drop:hover {
+    border-color: #b8912f;
+    background-color: #f5efe3;
+}
+
+.image-drop.has-image {
+    border-style: solid;
+    padding: 0;
+}
+
+.image-drop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.drop-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: #b8912f;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+}
+
+.drop-placeholder span {
+    font-size: 13px;
+}
+
+.drop-hint {
+    color: #a89a7d;
+    font-size: 11px !important;
+}
+
+.remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-image:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: #4a4a4a;
+}
+
+.field input {
+    padding: 12px 14px;
+    border: 1px solid #d8d0bd;
+    border-radius: 6px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.field select {
+    padding: 12px 14px;
+    border: 1px solid #d8d0bd;
+    border-radius: 6px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+    color: #3a3a3a;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.field select:focus {
+    border-color: #c9a860;
+}
+
+.field input:focus {
+    border-color: #c9a860;
+}
+
+.price-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d8d0bd;
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.price-input:focus-within {
+    border-color: #c9a860;
+}
+
+.price-input .currency {
+    padding: 0 12px;
+    color: #8a8168;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    background-color: #faf7f2;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.price-input input {
+    border: none;
+    flex: 1;
+}
+
+.submit-button {
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: #c9a860;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #b8912f;
+}

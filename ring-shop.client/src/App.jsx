@@ -14,6 +14,7 @@ import PostProduct from "./pages/admin/postProduct/postProduct";
 import ManageProducts from "./pages/admin/deleteProduct/deleteProduct";
 import ManageProductTypes from "./pages/admin/registerType/registerType";
 import Admin from "./pages/admin/admin";
+import BuyProduct from "./pages/buyProduct/buyProduct";
 
 const routesWithoutHeader = ["/login", "/register", "/change-password"];
 const routesWithoutFooter = ["/post-product"];
@@ -34,6 +35,7 @@ export default function App() {
                     <Route path="/warranty" element={<Warranty />} />
 
                     <Route path="/products" element={<ProductsLayout />} />
+                    <Route path="/products/:id" element={<BuyProduct />} />
 
                     <Route path="/admin" element={<Admin />} />
                     <Route path="/post-product" element={<PostProduct />} />

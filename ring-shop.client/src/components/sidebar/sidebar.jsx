@@ -5,25 +5,25 @@ import "./sidebar.css";
 
 export default function Sidebar({ isOpen, onClose }) {
     return (
-        <div className={`overlay ${isOpen ? "visible" : ""}`}>
-            <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+        <div className={`overlay ${isOpen ? "visible" : ""}`} onClick={onClose}>
+            <aside className={`sidebar ${isOpen ? "open" : ""}`} onClick={(e) => e.stopPropagation()}>
 
-              <div className="title-close">
-                  <span> Entrar </span>
-                  <button onClick={onClose}> X </button>
-              </div>
+                <div className="title-close">
+                    <span> Entrar </span>
+                    <button onClick={onClose}> X </button>
+                </div>
 
-              <nav className="nav-links">
+                <nav className="nav-links">
 
                     {navLinks.map((item) => (
                         <NavLink className="link nav" to={item.type ? `${item.to}?type=${item.type}` : item.to} key={item.id}>
                             {item.label}
                             {item.hasDropdown && <ChevronDown size={15} className="nav-icon" />}
                         </NavLink>
-                  ))}
+                    ))}
 
-              </nav>
-          </aside>
+                </nav>
+            </aside>
         </div>
-  );
+    );
 }

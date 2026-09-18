@@ -1,0 +1,362 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(24, 21, 17, 0.38);
+
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   SACOLA
+========================= */
+
+.bag {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    width: 420px;
+    max-width: 92vw;
+    height: 100vh;
+
+    background: #faf7f2;
+
+    transform: translateX(100%);
+
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+.bag.open {
+    transform: translateX(0);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 28px 28px 22px;
+}
+
+.cart-header-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    color: #9b927f;
+}
+
+.cart-header h2 {
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+
+    color: #302b25;
+}
+
+.cart-close {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ded8ce;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #5d564d;
+
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.cart-close:hover {
+    background: #eee9e1;
+    border-color: #cfc7bb;
+
+    transform: rotate(90deg);
+}
+
+
+/* =========================
+   DIVISOR
+========================= */
+
+.cart-divider {
+    width: calc(100% - 56px);
+
+    height: 1px;
+
+    margin: 0 auto;
+
+    background: #e3ddd3;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.cart-content {
+    flex: 1;
+
+    padding: 8px 28px 20px;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: #d5cec2 transparent;
+}
+
+.cart-content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.cart-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.cart-content::-webkit-scrollbar-thumb {
+    background: #d5cec2;
+    border-radius: 10px;
+}
+
+
+/* =========================
+   CARRINHO VAZIO
+========================= */
+
+.cart-empty {
+    min-height: 55%;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+}
+
+.cart-empty-icon {
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #ddd5c9;
+    border-radius: 50%;
+
+    font-size: 27px;
+
+    color: #a29682;
+}
+
+.cart-empty h3 {
+    margin: 0 0 8px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    color: #3c362f;
+}
+
+.cart-empty p {
+    max-width: 250px;
+
+    margin: 0;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: #918778;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.cart-footer {
+    padding: 20px 28px 24px;
+
+    border-top: 1px solid #e3ddd3;
+
+    background: #faf7f2;
+}
+
+.cart-total {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+.cart-total span {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 13px;
+
+    color: #766d61;
+}
+
+.cart-total strong {
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    color: #302b25;
+}
+
+
+/* =========================
+   BOTÃO CHECKOUT
+========================= */
+
+.checkout-button {
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+    border-radius: 2px;
+
+    background: #302b25;
+
+    color: #fff;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+.checkout-button:hover {
+    background: #484038;
+
+    transform: translateY(-1px);
+}
+
+.checkout-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================
+   TEXTO FOOTER
+========================= */
+
+.cart-footer-message {
+    display: block;
+
+    margin-top: 12px;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 10px;
+
+    text-align: center;
+
+    color: #9a9082;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 575.98px) {
+    .bag {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .cart-header {
+        padding: 22px 20px 18px;
+    }
+
+    .cart-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .cart-footer {
+        padding: 18px 20px 20px;
+    }
+
+    .cart-divider {
+        width: calc(100% - 40px);
+    }
+}

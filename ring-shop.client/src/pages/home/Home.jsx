@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/refs */
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
 import useScrollReveal from "../../hooks/useScrollReveal/useScrollReveal";
 import useAuth from "../../hooks/authUser/useAuth";
 import Carousel from "../../components/carousel/carousel";
@@ -24,11 +24,14 @@ import "./Home.css";
 import { useEffect } from "react";
 
 export function Home() {
+    const API_URL = import.meta.env.VITE_API_URL;
     const { user, loading } = useAuth();
     const carouselReveal = useScrollReveal();
     const itemsReveal = useScrollReveal();
     const productsReveal = useScrollReveal();
     const bannerReveal = useScrollReveal();
+
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         async function loadScreen() {
@@ -36,6 +39,7 @@ export function Home() {
                 return;
             }
         }
+        
         loadScreen();
     }, [user]);
 

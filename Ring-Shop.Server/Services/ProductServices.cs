@@ -7,6 +7,7 @@ namespace Ring_Shop.Server.Services
     public interface IProductServices
     {
         public Task<List<GetProductsDTO>> GetProductsByType(string type);
+        public Task<GetProductsDTO?> GetProductById(Guid id);
     }
     public class ProductServices : IProductServices
     {
@@ -31,6 +32,7 @@ namespace Ring_Shop.Server.Services
             }
 
             return await query
+                .AsNoTracking()
                 .Select(p => new GetProductsDTO
                 {
                     Id = p.Id,
@@ -39,6 +41,25 @@ namespace Ring_Shop.Server.Services
                     PictureURL = p.Picture
                 })
                 .ToListAsync();
+        }
+
+        // Get a product by its ID. Returns null if the product is not found.
+        public async Task<GetProductsDTO?> GetProductById(Guid id)
+        {
+            IQueryable<ProductEntity> query = _context.Products.Include(p => p.Type);
+
+            return await query
+                .AsNoTracking()
+                .Where(p => p.Id == id)
+                .Select(p => new GetProductsDTO
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Price = p.Price,
+                    PictureURL = p.Picture,
+                    Type = p.Type.Name
+                })
+                .FirstOrDefaultAsync();
         }
     }
 }

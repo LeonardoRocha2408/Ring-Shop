@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AnnouncementBar } from "./announcement-bar";
-import { ChevronDown } from "lucide-react";
-import Sidebar from "../sidebar/sidebar"
+import { ChevronDown, ShoppingBag } from "lucide-react";
+import Sidebar from "../sidebar/sidebar";
+import ShoppingCart from "../shoppingCart/cartSidebar";
 import navLinks from "./nav-links";
 import "./header.css";
 import useAuth from "../../hooks/authUser/useAuth";
+import useCartAuth from "../../hooks/cartContext/cartAuth";
 
 
 function NavigationBar() {
@@ -23,9 +25,10 @@ function NavigationBar() {
 
 
 export default function Header() {
+    const { cart, addToCart, removeFromCart } = useCartAuth();
     const { user, loading } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
-
+    const [bagIsOpen, setBagIsOpen] = useState(false);
     const [search, setSearch] = useState("");
 
 
@@ -41,6 +44,8 @@ export default function Header() {
 
                 <img src="images/logo.png" className="website-logo" />
 
+                <ShoppingBag size={30} className="shopping-bag" onClick={() => setBagIsOpen(true)} />
+
                 <div className="search">
                     <input
                         placeholder="Buscar"
@@ -54,6 +59,7 @@ export default function Header() {
                     <div className="user-features">
                         <img src="images/user.png" />
                         <span> <Link className="link" to="/register">Cadastre-se</Link> |  <Link className="link" to="/login">Fazer login</Link></span>
+                        <ShoppingBag size={20} onClick={() => setBagIsOpen(true)} />
                     </div>
                 )}
 
@@ -61,11 +67,13 @@ export default function Header() {
                     <div className="user-features">
                         <img src="images/user.png" />
                         <span>{user.name}</span>
+                        <ShoppingBag size={20} onClick={() => setBagIsOpen(true)} />
                     </div>
                 )}
             </div>
             <NavigationBar />
-            <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
+            <Sidebar isOpen={isOpen} onClose={() => setIsOpen(false)} p/>
+            <ShoppingCart isOpen={bagIsOpen} onClose={() => setBagIsOpen(false)} cart={cart} />
         </header>
     );
 }

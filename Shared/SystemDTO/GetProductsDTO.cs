@@ -13,5 +13,7 @@ namespace Shared.SystemDTO
 
         [Required(ErrorMessage = "Product picture is required")]
         public string PictureURL { get; set; } = string.Empty;
+
+        public string Type { get; set; } = string.Empty;
     }
 }

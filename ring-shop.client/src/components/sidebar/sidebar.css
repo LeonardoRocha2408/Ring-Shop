@@ -17,6 +17,7 @@
 }
 
 .title-close {
+    color: black;
     display: flex;
     justify-content: space-between;
     background: #C9A961;
@@ -71,10 +72,28 @@
     .sidebar {
         width: 80%;
     }
+    .title-close {
+        font-size: 30px !important;
+    }
+    .nav-links a {
+        font-family: "Montserrat", sans-serif;
+        text-decoration: none;
+        color: black;
+        font-size: 15px !important;
+    }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
     .sidebar {
         width: 70%;
+    }
+    .title-close {
+        font-size: 40px !important;
+    }
+    .nav-links a {
+        font-family: "Montserrat", sans-serif;
+        text-decoration: none;
+        color: black;
+        font-size: 17px !important;
     }
 }

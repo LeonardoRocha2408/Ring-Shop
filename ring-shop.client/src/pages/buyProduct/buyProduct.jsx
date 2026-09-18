@@ -1,27 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import "./buyProduct.css";
 
-export default function BuyProduct({ product }) {
+const RING_TYPE_NAME = "Alianças";
+
+export default function BuyProduct() {
+    const { id } = useParams();
+
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
     const [engraving1, setEngraving1] = useState("");
     const [engraving2, setEngraving2] = useState("");
     const [size1, setSize1] = useState("");
     const [size2, setSize2] = useState("");
     const [notes, setNotes] = useState("");
 
-    const installmentPrice = product.price / 2;
+    useEffect(() => {
+        async function fetchProduct() {
+            const API_URL = import.meta.env.VITE_API_URL;
+
+            try {
+                const response = await fetch(`${API_URL}/products/${id}`);
+
+                if (!response.ok) throw new Error("Produto não encontrado.");
+
+                const data = await response.json();
+                setProduct(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchProduct();
+    }, [id]);
 
     function handleBuy() {
         const order = {
             productId: product.id,
-            engraving1,
-            engraving2,
-            size1,
-            size2,
+            ...(isRing && { engraving1, engraving2, size1, size2 }),
             notes
         };
         console.log("Pedido:", order);
         // aqui entra a chamada real pra API de pedido/carrinho
     }
+
+    if (loading) return <p className="detail-status">Carregando produto...</p>;
+    if (error) return <p className="detail-status">{error}</p>;
+    if (!product) return null;
+
+    const isRing = product.typeName === RING_TYPE_NAME;
+    const installmentPrice = product.price / 2;
 
     return (
         <div className="product-detail">
@@ -45,51 +77,55 @@ export default function BuyProduct({ product }) {
                 </div>
 
                 <div className="product-detail-form">
-                    <div className="detail-field">
-                        <label htmlFor="engraving1">Gravação do aro 1</label>
-                        <input
-                            id="engraving1"
-                            type="text"
-                            placeholder="Ex: Para sempre"
-                            value={engraving1}
-                            onChange={(e) => setEngraving1(e.target.value)}
-                        />
-                    </div>
+                    {isRing && (
+                        <>
+                            <div className="detail-field">
+                                <label htmlFor="engraving1">Gravação do aro 1</label>
+                                <input
+                                    id="engraving1"
+                                    type="text"
+                                    placeholder="Ex: Para sempre"
+                                    value={engraving1}
+                                    onChange={(e) => setEngraving1(e.target.value)}
+                                />
+                            </div>
 
-                    <div className="detail-field">
-                        <label htmlFor="engraving2">Gravação do aro 2</label>
-                        <input
-                            id="engraving2"
-                            type="text"
-                            placeholder="Ex: Com amor"
-                            value={engraving2}
-                            onChange={(e) => setEngraving2(e.target.value)}
-                        />
-                    </div>
+                            <div className="detail-field">
+                                <label htmlFor="engraving2">Gravação do aro 2</label>
+                                <input
+                                    id="engraving2"
+                                    type="text"
+                                    placeholder="Ex: Com amor"
+                                    value={engraving2}
+                                    onChange={(e) => setEngraving2(e.target.value)}
+                                />
+                            </div>
 
-                    <div className="detail-field-row">
-                        <div className="detail-field">
-                            <label htmlFor="size1">Numeração do aro 1</label>
-                            <input
-                                id="size1"
-                                type="text"
-                                placeholder="Ex: 14"
-                                value={size1}
-                                onChange={(e) => setSize1(e.target.value)}
-                            />
-                        </div>
+                            <div className="detail-field-row">
+                                <div className="detail-field">
+                                    <label htmlFor="size1">Numeração do aro 1</label>
+                                    <input
+                                        id="size1"
+                                        type="text"
+                                        placeholder="Ex: 14"
+                                        value={size1}
+                                        onChange={(e) => setSize1(e.target.value)}
+                                    />
+                                </div>
 
-                        <div className="detail-field">
-                            <label htmlFor="size2">Numeração do aro 2</label>
-                            <input
-                                id="size2"
-                                type="text"
-                                placeholder="Ex: 16"
-                                value={size2}
-                                onChange={(e) => setSize2(e.target.value)}
-                            />
-                        </div>
-                    </div>
+                                <div className="detail-field">
+                                    <label htmlFor="size2">Numeração do aro 2</label>
+                                    <input
+                                        id="size2"
+                                        type="text"
+                                        placeholder="Ex: 16"
+                                        value={size2}
+                                        onChange={(e) => setSize2(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    )}
 
                     <div className="detail-field">
                         <label htmlFor="notes">Observações do pedido</label>

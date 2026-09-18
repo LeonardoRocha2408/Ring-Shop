@@ -27,6 +27,14 @@
     top: 60px;
     left: 30px;
 }
+.shopping-bag {
+    filter: brightness(0) saturate(100%) invert(70%) sepia(30%) saturate(600%);
+    width: 35px;
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 30px;
+}
 
 .search {
     display: flex;
@@ -40,10 +48,11 @@
     transition: border 0.6s ease-in-out;
 }
 .search:focus-within {
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .search input {
+    color: white;
     font-size: 14px;
     border: none;
     outline: none;
@@ -119,6 +128,11 @@
         align-items: center;
         justify-content: center;
     }
+    .shopping-bag {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
     .search {
         width: 80%;
         margin-bottom: 15px;
@@ -144,6 +158,11 @@
     }
     .open-sidebar {
         width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .shopping-bag {
         display: flex;
         align-items: center;
         justify-content: center;

@@ -7,6 +7,7 @@
             new UserEndpoints().MapEndpoints(app);
             new AdminEndpoints().MapEndpoints(app);
             new ProductEndpoints().MapEndpoints(app);
+            new CartEndpoints().MapEndpoints(app);
         }
     }
 }

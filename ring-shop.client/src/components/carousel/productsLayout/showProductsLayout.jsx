@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+import { ShoppingBag } from "lucide-react";
+import useCartAuth from "../../../hooks/cartContext/cartAuth";
 import "./showProductsLayout.css";
 
 export default function ShowProductsLayout({ product }) {
+    const { cart, addToCart, removeFromCart } = useCartAuth();
     const installmentPrice = product.price / 2;
 
     return (
@@ -10,7 +14,14 @@ export default function ShowProductsLayout({ product }) {
             <p className="product-description">{product.name}</p>
             <span>R$ {product.price.toFixed(2).replace(".", ",")}</span>
             <span>Até 2 vezes de R$ {installmentPrice.toFixed(2).replace(".", ",")} sem juros</span>
-            <button>COMPRAR</button>
+            <Link to={`/products/${product.id}`} className="buy-button">COMPRAR</Link>
+            <button
+                className="add-cart-button"
+                onClick={() => addToCart(product)}
+                aria-label="Adicionar ao carrinho"
+            >
+                <ShoppingBag size={19} strokeWidth={1.8} />
+            </button>
         </div>
     );
 }

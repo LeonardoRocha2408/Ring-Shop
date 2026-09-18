@@ -21,7 +21,7 @@ namespace Ring_Shop.Server
             builder.Services.AddCors(options =>
             options.AddPolicy("FrontEndOnly", policy =>
             {
-                policy.WithOrigins("https://localhost:57103")
+                policy.WithOrigins("https://localhost:5713")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials();
@@ -115,6 +115,9 @@ namespace Ring_Shop.Server
                     );
                 return new Cloudinary(account) { Api = { Secure = true } };
             });
+
+            // Add Redis services to program 
+            builder.Services.AddSingleton<RedisServices>();
 
             // Add conversion of the enum to string
             builder.Services.ConfigureHttpJsonOptions(options => 

@@ -4,7 +4,7 @@ import useCartAuth from "../../../hooks/cartContext/cartAuth";
 import "./showProductsLayout.css";
 
 export default function ShowProductsLayout({ product }) {
-    const { cart, addToCart, removeFromCart } = useCartAuth();
+    const { addToCart } = useCartAuth();
     const installmentPrice = product.price / 2;
 
     return (

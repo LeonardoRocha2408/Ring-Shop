@@ -25,8 +25,8 @@ export default function App() {
 
     return (
         <>
-            {!hideHeader && <Header />}
             <AuthProvider>
+                {!hideHeader && <Header />}
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />

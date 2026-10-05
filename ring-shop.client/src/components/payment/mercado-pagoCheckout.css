@@ -1,0 +1,153 @@
+.payment-card {
+    position: relative;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px 0;
+
+    background: white;
+}
+
+
+.mercado-pago-close {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+    margin-bottom: 15px;
+
+    background: transparent;
+
+    border: none;
+
+    border-radius: 4px;
+
+    color: #333;
+
+    font-size: 15px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.mercado-pago-close:hover {
+    background: #333;
+
+    color: #FBF8F3;
+
+    border-color: #333;
+}
+
+.mercado-pago-buy {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: none;
+    border-radius: 5px;
+
+    background: #C9A961;
+    transition: background 0.5s;
+    padding: 5px;
+}
+.mercado-pago-buy:hover {
+    background: #a8823d;
+}
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+@media (min-width: 992px) {
+
+    .payment-card {
+        width: 100%;
+        padding: 10px 0 0;
+    }
+
+    .mercado-pago-close {
+        top: 0;
+        left: 0;
+    }
+}
+
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (min-width: 600px) and (max-width: 991px) {
+
+    .payment-card {
+        width: 100%;
+
+        padding: 10px 0 0;
+    }
+
+    .mercado-pago-close {
+        width: 38px;
+        height: 38px;
+
+        font-size: 22px;
+    }
+}
+
+
+/* =========================
+   SMARTPHONE
+   ========================= */
+
+@media (max-width: 599px) {
+
+    .payment-card {
+        width: 100%;
+
+        padding: 8px 0 0;
+    }
+
+    .mercado-pago-close {
+        width: 34px;
+        height: 34px;
+
+        font-size: 20px;
+    }
+}
+
+
+/* =========================
+   SMALL SMARTPHONE
+   ========================= */
+
+@media (max-width: 400px) {
+
+    .payment-card {
+        padding: 6px 0 0;
+    }
+
+    .mercado-pago-close {
+        width: 30px;
+        height: 30px;
+
+        font-size: 18px;
+    }
+}

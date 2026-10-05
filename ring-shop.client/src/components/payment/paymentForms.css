@@ -1,0 +1,283 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.5);
+
+    z-index: 999;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+}
+
+.overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* =========================
+   MODAL
+   ========================= */
+
+.payment-modal {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%) scale(0.95);
+
+    width: 500px;
+    max-width: 90vw;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    padding: 32px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(201, 169, 97, 0.35);
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.payment-modal.open {
+    opacity: 1;
+    pointer-events: auto;
+
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* =========================
+   TITLE
+   ========================= */
+
+.payment-modal h2 {
+    font-size: 1.6rem;
+
+    color: #333333;
+
+    margin: 0 0 24px;
+
+    text-align: center;
+}
+
+
+/* =========================
+   PAYMENT METHOD
+   ========================= */
+
+.payment-form-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 14px 12px;
+
+    margin-bottom: 8px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease;
+}
+
+.payment-form-item:hover {
+    background: rgba(201, 169, 97, 0.12);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   ICON
+   ========================= */
+
+.payment-form-item button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    background: rgba(201, 169, 97, 0.15);
+
+    border: 1px solid rgba(201, 169, 97, 0.4);
+
+    border-radius: 50%;
+
+    color: #C9A961;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.payment-form-item:hover button {
+    background: #C9A961;
+
+    color: #FBF8F3;
+
+    border-color: #C9A961;
+}
+
+
+/* =========================
+   TEXT
+   ========================= */
+
+.payment-form-item span {
+    font-size: 1.05rem;
+
+    color: #333333;
+
+    font-weight: 500;
+}
+
+
+/* =========================================================
+   TABLET
+   600px → 991px
+   ========================================================= */
+
+@media (min-width: 600px) and (max-width: 991px) {
+
+    .payment-modal {
+        width: 85%;
+
+        max-width: 700px;
+
+        padding: 32px;
+    }
+
+    .payment-modal h2 {
+        font-size: 1.7rem;
+
+        margin-bottom: 26px;
+    }
+
+    .payment-form-item {
+        gap: 20px;
+
+        padding: 16px 14px;
+
+        margin-bottom: 10px;
+    }
+
+    .payment-form-item button {
+        width: 50px;
+        height: 50px;
+    }
+
+    .payment-form-item span {
+        font-size: 1.15rem;
+    }
+}
+
+
+/* =========================================================
+   SMARTPHONE
+   Até 599px
+   ========================================================= */
+
+@media (max-width: 599px) {
+
+    .payment-modal {
+        width: 94%;
+
+        max-width: none;
+
+        max-height: 90vh;
+
+        padding: 22px 18px;
+
+        overflow-y: auto;
+    }
+
+    .payment-modal h2 {
+        font-size: 1.2rem;
+
+        margin-bottom: 18px;
+    }
+
+    .payment-form-item {
+        gap: 12px;
+
+        padding: 11px 8px;
+
+        margin-bottom: 6px;
+    }
+
+    .payment-form-item button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .payment-form-item span {
+        font-size: 0.95rem;
+    }
+}
+
+
+/* =========================================================
+   CELULAR PEQUENO
+   Até 400px
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .payment-modal {
+        width: 96%;
+
+        padding: 18px 14px;
+    }
+
+    .payment-modal h2 {
+        font-size: 1.05rem;
+    }
+
+    .payment-form-item {
+        gap: 10px;
+
+        padding: 9px 6px;
+    }
+
+    .payment-form-item button {
+        width: 34px;
+        height: 34px;
+    }
+
+    .payment-form-item span {
+        font-size: 0.88rem;
+    }
+}

@@ -27,15 +27,38 @@ export function CartProvider({ children }) {
             if (!response.ok) {
                 console.log(response.status)
             }
+
+            const updatedCart = await response.json();
+            setCart(updatedCart);
         }
         catch (error) {
             alert(error);
         }
-    setCart((prevCart) => [...prevCart, product]);
   };
 
-  const removeFromCart = (product) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
+    const removeFromCart = async (product, deleteWhat) => {
+        try {
+            const response = await fetch(`${API_URL}/remove-cart`, {
+                method: "DELETE",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    Id: product.id,
+                    DeleteWhat: deleteWhat
+                })
+            })
+
+            if (!response.ok) {
+                console.log(response.status)
+            }
+            const updatedCart = await response.json();
+            setCart(updatedCart);
+        }
+        catch (error) {
+            alert(error);
+        }
   };
 
     const refreshCart = useCallback(async () => {

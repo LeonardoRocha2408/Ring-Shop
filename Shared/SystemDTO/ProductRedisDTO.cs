@@ -8,6 +8,10 @@ namespace Shared.SystemDTO
         public Guid Id { get; set; }
         [Required(ErrorMessage = "Product name is required")]
         public string Name { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Product price is required")]
+        public decimal Price { get; set; }
+
         [Required(ErrorMessage = "Amount products is required")]
         public int Amount { get; set; }
         [Required(ErrorMessage = "Product image URL is required")]

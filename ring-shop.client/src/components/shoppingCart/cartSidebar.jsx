@@ -3,7 +3,7 @@ import "./cartSidebar.css";
 
 export default function ShoppingCart({ isOpen, onClose, cart }) {
     const total = cart.reduce(
-        (acc, product) => acc + product.price * product.quantity,
+        (acc, product) => acc + product.price * product.amount,
         0
     );
 

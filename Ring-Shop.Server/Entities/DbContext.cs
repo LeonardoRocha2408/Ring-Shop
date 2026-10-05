@@ -15,6 +15,18 @@ namespace Ring_Shop.Server.Entities
                 entity.Property(e => e.Email).IsRequired();
                 entity.HasIndex(e => e.Email).IsUnique();
             });
+            modelBuilder.Entity<ProductEntity>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name).IsRequired();
+                entity.Property(e => e.Price).IsRequired();
+            });
+            modelBuilder.Entity<ProductTypeEntity>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.Name).IsUnique();
+                entity.Property(e => e.Name).IsRequired();
+            });
         }
 
         public DbContextEntity(DbContextOptions options) : base(options) { }
